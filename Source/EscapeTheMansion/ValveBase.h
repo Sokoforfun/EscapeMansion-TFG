@@ -6,7 +6,7 @@
 
 class UStaticMeshComponent;
 
-// Declaramos un "Delegado" (una notificación) para avisar al Manager cuando giremos
+// Avisamos al manager al girar
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnValveRotated);
 
 UCLASS()
@@ -23,30 +23,30 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UStaticMeshComponent* ValveMesh;
 
-	// --- CAMBIO IMPORTANTE: Contadores ---
+	
 
-	// Cuántas veces la hemos girado (Empieza en 0)
+	// Número de veces girado
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Valve Logic")
 	int32 CurrentTurns;
 
 public:
-	// Cuántas vueltas necesita PARA SER CORRECTA (Lo configuraremos en el editor)
+	//En el editor configuramos cuantas vueltas son correctas
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Valve Logic")
 	int32 TargetTurns;
 
-	// El "grito" que avisa que la válvula se movió
+	//Avisamos de que la válvula se ha movido
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnValveRotated OnValveRotatedDelegate;
 
 	UFUNCTION(BlueprintCallable, Category = "Interaction")
 	void Interact();
 
-	// Función para que el Manager pregunte: "¿Estás correcta?"
+	//Comprobamos si está correcta
 	UFUNCTION(BlueprintCallable, Category = "Valve Logic")
 	bool IsCorrect();
 
 protected:
-	// Le pasamos el nuevo ángulo al Blueprint
+	//Le damos al Blueprint el nuevo ángulo
 	UFUNCTION(BlueprintImplementableEvent, Category = "Interaction")
 	void OnValveInteracted(float NewAngle);
 };
