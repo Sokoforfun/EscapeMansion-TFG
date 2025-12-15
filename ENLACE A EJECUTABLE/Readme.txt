@@ -1,0 +1,1 @@
+Al entrar al enlace descargar el archivo, descomprimirlo, entrar en la carpeta "Windows" y ejecutar el archivo .exe
